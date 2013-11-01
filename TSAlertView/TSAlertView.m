@@ -90,6 +90,7 @@
 {
 	return YES;
 }
+
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
 {
 	TSAlertView* av = [self.view.subviews lastObject];
@@ -734,7 +735,10 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
         
         
 		// buttons
-		CGFloat buttonHeight = [[self.buttons objectAtIndex:0] sizeThatFits: CGSizeZero].height;
+        CGFloat buttonHeight = 0.0;
+        if ([self.buttons count]){
+            buttonHeight = [[self.buttons objectAtIndex:0] sizeThatFits: CGSizeZero].height;
+        }
 		if ( stacked )
 		{
 			CGFloat buttonWidth = maxWidth;
@@ -806,9 +810,10 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 {
 	CGFloat maxWidth = self.width - (kTSAlertView_LeftMargin * 2);
 	int buttonCount = [self.buttons count];
-	
-	CGSize bs = [[self.buttons objectAtIndex:0] sizeThatFits: CGSizeZero];
-	
+	CGSize bs = CGSizeZero;
+    if (buttonCount >0){
+        bs = [[self.buttons objectAtIndex:0] sizeThatFits: CGSizeZero];
+	}
 	bs.width = maxWidth;
 	
 	bs.height = (bs.height * buttonCount) + (kTSAlertView_RowMargin * (buttonCount-1));
