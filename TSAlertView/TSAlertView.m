@@ -602,7 +602,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 							 self.window.alpha = 0;
 						 }
 						 completion: ^(BOOL finished) {
-							 [self releaseWindow: buttonIndex];
+							 [self releaseWindow: (int) buttonIndex];
 						 }];
 		
 		[UIView commitAnimations];
@@ -611,7 +611,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 	{
 		[self.window resignKeyWindow];
 		
-		[self releaseWindow: buttonIndex];
+		[self releaseWindow: (int) buttonIndex];
 	}
 }
 
@@ -701,7 +701,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 
 - (void) onButtonPress: (id) sender
 {
-	int buttonIndex = [_buttons indexOfObjectIdenticalTo: sender];
+	int buttonIndex = (int) [_buttons indexOfObjectIdenticalTo: sender];
 	
 	if ( [self.delegate respondsToSelector: @selector(alertView:clickedButtonAtIndex:)] )
 	{
@@ -878,7 +878,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
     const CGFloat leftMargin = _isiOS7 ? kTSAlertView_LeftMarginiOS7 : kTSAlertView_LeftMargin;
     
 	CGFloat maxWidth = self.width - (leftMargin * 2);
-	int buttonCount = [self.buttons count];
+	int buttonCount = (int) [self.buttons count];
 	CGSize bs = CGSizeZero;
     if (buttonCount >0){
         bs = [[self.buttons objectAtIndex:0] sizeThatFits: CGSizeZero];
