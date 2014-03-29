@@ -59,7 +59,7 @@
 {
 	self.oldKeyWindow = nil;
 	
-	NSLog( @"TSAlertView: TSAlertOverlayWindow dealloc" );
+	NSLog( @"TSAlertView: TSAlertOverlayWindow %@ dealloc",self);
 	
 	[super dealloc];
 }
@@ -109,7 +109,7 @@
 
 - (void) dealloc
 {
-	NSLog( @"TSAlertView: TSAlertViewController dealloc" );
+	NSLog( @"TSAlertView: TSAlertViewController %@ dealloc",self );
 	[super dealloc];
 }
 
@@ -229,7 +229,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 	
 	[[NSNotificationCenter defaultCenter] removeObserver: self ];
 	
-	NSLog( @"TSAlertView: TSAlertOverlayWindow dealloc" );
+	NSLog( @"TSAlertView: TSAlertView %@ dealloc", self);
 	
     [super dealloc];
 }
@@ -624,7 +624,7 @@ const CGFloat kTSAlertView_ColumnMargin = 10.0;
 	
 	// the one place we release the window we allocated in "show"
 	// this will propogate releases to us (TSAlertView), and our TSAlertViewController
-	
+	NSLog (@"%@ calls release on window:%@",self,self.window);
 	[self.window release];
 }
 
